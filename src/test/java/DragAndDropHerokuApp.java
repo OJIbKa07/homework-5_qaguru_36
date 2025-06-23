@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,11 @@ public class DragAndDropHerokuApp {
     static void basicSettingBrowser() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://the-internet.herokuapp.com";
+    }
+
+    @AfterEach
+    void tearDown () {
+        Selenide.closeWebDriver();
     }
 
     @Test
