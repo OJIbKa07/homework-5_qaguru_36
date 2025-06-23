@@ -6,24 +6,29 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.DragAndDropOptions.to;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class DragAndDropHerokuApp {
 
     @BeforeAll
-    static void basicSettingBrowder() {
+    static void basicSettingBrowser() {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://the-internet.herokuapp.com";
     }
 
     @Test
-    void swapElement() {
+    void swapElementTest() {
         open("/drag_and_drop");
 
         SelenideElement columnA = $("#column-a");
         SelenideElement columnB = $("#column-b");
+
+        $(columnA).shouldHave(text("A"));
+        $(columnB).shouldHave(text("B"));
+
         WebElement source = columnA.toWebElement();
         WebElement target = columnB.toWebElement();
 
@@ -36,5 +41,18 @@ public class DragAndDropHerokuApp {
 
         columnA.shouldHave(text("B"));
         columnB.shouldHave(text("A"));
+    }
+
+    @Test
+    void swapElementDragAndDropTest() {
+        open("/drag_and_drop");
+
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
+
+        $("#column-a").dragAndDrop(to("#column-b"));
+
+        $("#column-a").shouldHave(text("B"));
+        $("#column-b").shouldHave(text("A"));
     }
 }
