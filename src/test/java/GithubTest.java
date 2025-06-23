@@ -16,7 +16,7 @@ public class GithubTest {
     }
 
     @Test
-    void shouldBeThePageEnterprize() {
+    void shouldBeThePageEnterprizeTest() {
         open("/");
         $x("//button[contains(text(),'Solutions')]").hover();
         $x("//a[contains(text(),'Enterprise')]").click();
