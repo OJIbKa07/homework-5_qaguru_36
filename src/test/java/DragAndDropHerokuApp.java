@@ -15,7 +15,6 @@ public class DragAndDropHerokuApp {
     @BeforeAll
     static void basicSettingBrowser() {
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://the-internet.herokuapp.com";
     }
 
